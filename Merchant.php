@@ -11,6 +11,8 @@ class Merchant extends Object
 
     public $sMerchantPass1;
     public $sMerchantPass2;
+    
+    public $returnLink = false;
 
     public $baseUrl = 'https://auth.robokassa.ru/Merchant/Index.aspx';
 
@@ -38,9 +40,13 @@ class Merchant extends Object
         if (!empty($shp) && ($query = http_build_query($shp)) !== '') {
             $url .= '&' . $query;
         }
-
-        Yii::$app->user->setReturnUrl(Yii::$app->request->getUrl());
-        return Yii::$app->response->redirect($url);
+        
+        if ( !$this->returnLink ){
+            Yii::$app->user->setReturnUrl(Yii::$app->request->getUrl());
+            return Yii::$app->response->redirect($url);
+        } else {
+            return $url;
+        }
     }
 
     private function implodeShp($shp)
