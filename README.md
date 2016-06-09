@@ -17,6 +17,7 @@ composer require yii-cms/yii2-robokassa
         'sMerchantLogin' => '',
         'sMerchantPass1' => '',
         'sMerchantPass2' => '',
+        'returnLink' => false
     ]
     ...
 ]
